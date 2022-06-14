@@ -2,6 +2,7 @@ import string
 import tkinter
 import tkinter as tkcık
 from collections import Counter
+from tkinter import END
 
 myTk=tkcık.Tk()
 
@@ -11,29 +12,39 @@ title=myTk.title("My qute gui")
 myTk.geometry("500x500")
 
 def readFile():
-    myFile = open('C:\\Users\\C605\\Desktop\\Marvel.txt', 'r')
+    myFile = open('C:\\Users\\MSI\\Desktop\\Marvel.txt', 'r')
     content=myFile.readlines()
     for i in content:
         text.insert('1.0',i)
     text.pack()
     myFile.close()
 def calculateAndRead():
-        myFile = open('C:\\Users\\C605\\Desktop\\Marvel.txt', 'r')
+        myFile = open('C:\\Users\\MSI\\Desktop\\Marvel.txt', 'r')
         t2=myFile.readlines()
         freq = {}
         words=[]
         for line in t2:
-                words=line.split()
+            words.append(line.split())
 
 
         for item in words:
-            if (item in freq):
-                freq[item] += 1
-            else:
-                freq[item] = 1
+            for i in item:
+                if (i in freq):
+                    freq[i] += 1
+                else:
+                    freq[i] = 1
+        for allKeys in freq:
+            print("\"", allKeys, "\"", end=" ")
+            print(freq[allKeys], end=" ")
+            print()
+            str_ = (allKeys, "=", (freq[allKeys]))
+            text.insert(END, str_)
+            text.insert(END, "\n")
         """for key, value in freq.items():
-            text.insert('1.0',(key,value))"""
-        text.insert('1.0',freq)
+            text.insert('1.0',(key,value),"\n")
+            text.pack"""
+     #   text.insert('1.0',freq)
+
         myFile.close()
 def clearToTextInput():
    text.delete("1.0","end")
@@ -49,6 +60,3 @@ btn=tkcık.Button(myTk,height=1,width=10, text="Clear",command=clearToTextInput)
 btn.pack()
 
 myTk.mainloop()
-
-
-
