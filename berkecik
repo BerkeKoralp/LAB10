@@ -40,12 +40,9 @@ def calculateAndRead():
             str_ = (allKeys, "=", (freq[allKeys]))
             text.insert(END, str_)
             text.insert(END, "\n")
-        """for key, value in freq.items():
-            text.insert('1.0',(key,value),"\n")
-            text.pack"""
-     #   text.insert('1.0',freq)
 
         myFile.close()
+        
 def clearToTextInput():
    text.delete("1.0","end")
 
